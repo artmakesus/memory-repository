@@ -73,7 +73,7 @@
 		// Default parameters
 		config.track = typeof config.track == 'string' ? config.track : '#node';
 		config.count = typeof config.count == 'number' ? config.count : 15;
-		config.maxTweets = typeof config.maxTweets == 'number' ? config.maxTweets : 100;
+		config.max_tweets = typeof config.max_tweets == 'number' ? config.max_tweets : 100;
 	} catch (error) {
 		alert('config.json: ' + error);
 		remote.app.quit();
@@ -110,8 +110,8 @@
 				}
 
 				// Check if we reached the quota of max tweets searched, in which case we start streaming tweets
-				if (_this.state.tweets.length >= config.maxTweets) {
-					console.log('Reached max tweets searched of', config.maxTweets);
+				if (_this.state.tweets.length >= config.max_tweets) {
+					console.log('Reached max tweets searched of', config.max_tweets);
 					_this.streamTweets();
 					return;
 				}
@@ -177,10 +177,10 @@
 				// Encode query before passing it to Twitter (unsure if the 'twitter' module already does this)
 				var q = encodeURIComponent(config.track);
 
-				// Make sure total tweets searched never exceeds config.maxTweets (doesn't apply for tweets from stream)
+				// Make sure total tweets searched never exceeds config.max_tweets (doesn't apply for tweets from stream)
 				var count = config.count;
-				if (_this.state.tweets.length + config.count > config.maxTweets) {
-					count -= _this.state.tweets.length + config.count - config.maxTweets;
+				if (_this.state.tweets.length + config.count > config.max_tweets) {
+					count -= _this.state.tweets.length + config.count - config.max_tweets;
 				}
 
 				var params = { q: q, count: count, include_entities: true };

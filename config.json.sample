@@ -5,5 +5,5 @@
 	"access_token_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	"track": "#node",
 	"count": 15,
-	"maxTweets": 100
+	"max_tweets": 100
 }
