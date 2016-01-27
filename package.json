@@ -1,0 +1,34 @@
+{
+  "name": "memory-repository",
+  "version": "0.0.1",
+  "description": "Memory Repository is an interactive installation involving audience participation. The theme is about memory and growing up.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artmakesus/memory-repository.git"
+  },
+  "keywords": [
+    "art",
+    "memory",
+    "installation",
+    "twitter"
+  ],
+  "author": "ArtMakesUs team",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/artmakesus/memory-repository/issues"
+  },
+  "homepage": "https://github.com/artmakesus/memory-repository",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "electron-prebuilt": "^0.36.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "twitter": "^1.2.5"
+  }
+}
