@@ -80,7 +80,8 @@ var App = (function (_React$Component) {
 
 				var tweetsFound = data.statuses;
 
-				// If tweets are found, find the smallest tweet ID and append the tweets to the current ones
+				// If tweets are found, find the smallest tweet ID and append the tweets to the current ones.
+				// The smallest tweet ID is needed for next search.
 				if (tweetsFound.length > 0) {
 					var ids = tweetsFound.map(function (tweet) {
 						return tweet.id;
