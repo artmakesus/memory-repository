@@ -5,6 +5,7 @@ Memory Repository is an interactive installation involving audience participatio
 Requirements
 ------------
 * [Node](https://nodejs.org)
+* (development) [Babel](https://babeljs.io)
 
 Setup
 -----
@@ -13,3 +14,9 @@ Setup
 Run
 ---
 1. Run `npm start`
+
+Development
+-----------
+1. Run `webpack --watch`
+2. At `js/components`, run `babel --presets react,es2015,stage-0 --watch src --out-dir build`
+3. Write some code!
