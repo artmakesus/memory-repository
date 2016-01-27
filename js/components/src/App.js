@@ -67,23 +67,23 @@ class App extends React.Component {
 				return;
 			}
 
-			let tweets = data.statuses;
+			let tweetsFound = data.statuses;
 
 			// If tweets are found, find the smallest tweet ID and append the tweets to the current ones
-			if (tweets.length > 0) {
-				let ids = tweets.map(function(tweet) {
+			if (tweetsFound.length > 0) {
+				let ids = tweetsFound.map(function(tweet) {
 					return tweet.id;
 				});
 				this.maxID = Math.min.apply(null, ids);
 
 				let currentTweets = this.state.tweets;
-				for (let i in tweets) {
-					currentTweets.push(tweets[i]);
+				for (let i in tweetsFound) {
+					currentTweets.push(tweetsFound[i]);
 				}
 				this.setState({ tweets: currentTweets });
 			}
 
-			if (tweets.length < config.count) {
+			if (tweetsFound.length < config.count) {
 				// If no tweets are found or we reached the end of search results, start streaming
 				this.streamTweets();
 			} else {

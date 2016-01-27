@@ -124,23 +124,23 @@
 						return;
 					}
 
-					var tweets = data.statuses;
+					var tweetsFound = data.statuses;
 
 					// If tweets are found, find the smallest tweet ID and append the tweets to the current ones
-					if (tweets.length > 0) {
-						var ids = tweets.map(function (tweet) {
+					if (tweetsFound.length > 0) {
+						var ids = tweetsFound.map(function (tweet) {
 							return tweet.id;
 						});
 						_this.maxID = Math.min.apply(null, ids);
 
 						var currentTweets = _this.state.tweets;
-						for (var i in tweets) {
-							currentTweets.push(tweets[i]);
+						for (var i in tweetsFound) {
+							currentTweets.push(tweetsFound[i]);
 						}
 						_this.setState({ tweets: currentTweets });
 					}
 
-					if (tweets.length < config.count) {
+					if (tweetsFound.length < config.count) {
 						// If no tweets are found or we reached the end of search results, start streaming
 						_this.streamTweets();
 					} else {
