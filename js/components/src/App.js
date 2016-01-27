@@ -122,7 +122,7 @@ class App extends React.Component {
  		// Encode query before passing it to Twitter (unsure if the 'twitter' module already does this)
 		let q = encodeURIComponent(config.track);
 
-		// Make sure total tweets searched never exceeds config.maxTweets (doesn't apply this for tweets from stream)
+		// Make sure total tweets searched never exceeds config.maxTweets (doesn't apply for tweets from stream)
 		let count = config.count;
 		if (this.state.tweets.length + config.count > config.maxTweets) {
 			count -= (this.state.tweets.length + config.count) - config.maxTweets;
@@ -132,7 +132,8 @@ class App extends React.Component {
 
 		// Don't include max_id if it hasn't been known yet (usually means searchTweets() has never been called before)
 		if (this.maxID) {
-			params.max_id = this.maxID - 100; // Minus 100 to prevent the same tweet to be returned again (apparently tweet IDs are incremented in steps of 100?)
+			// Minus 100 to prevent the same tweet to be returned again (apparently tweet IDs are incremented in steps of 100?)
+			params.max_id = this.maxID - 100;
 		}
 
 		return params;
