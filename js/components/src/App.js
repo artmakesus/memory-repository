@@ -1,5 +1,7 @@
 'use strict'
 
+let inappropriateWords = ['RT', 'fuck', 'shit'];
+
 // Configuration
 let config;
 try {
@@ -30,11 +32,11 @@ class App extends React.Component {
 			</div>
 		)
 	}
-	maxID = -1
+	maxID = -1;
 	state = {
 		tweets: [],
 		isStreaming: false,
-	}
+	};
 	componentDidMount() {
 		twitterClient = new Twitter({
 			consumer_key: config.consumer_key,
@@ -45,6 +47,17 @@ class App extends React.Component {
 
 		this.searchTweets();
 	}
+	wordFilter = (phrase) => {
+		var i = 0;
+		while(i < inappropriateWords.length-1){
+			if(phrase.indexOf(inappropriateWords[i]) > -1){
+				return false;
+			}else{
+				i++;
+			}
+		}	
+		return true;
+	};
 	searchTweets = () => {
 		// Should never be called if we are already streaming tweets
 		if (this.state.isStreaming) {
@@ -79,7 +92,11 @@ class App extends React.Component {
 
 				let currentTweets = this.state.tweets;
 				for (let i in tweetsFound) {
-					currentTweets.push(tweetsFound[i]);
+					if(this.wordFilter(tweetsFound[i].text)){
+						currentTweets.push(tweetsFound[i]);
+					}else{
+						console.log(tweetsFound[i].text);
+					}
 				}
 				this.setState({ tweets: currentTweets });
 			}
@@ -94,8 +111,9 @@ class App extends React.Component {
 		});
 
 		console.log('Searching tweets..');
-	}
+	};
 	streamTweets = () => {
+		console.log('hello stream');
 		// Prevent multiple streams
 		if (!this.state.isStreaming) {
 
@@ -118,7 +136,7 @@ class App extends React.Component {
 
 			console.log('Streaming tweets..');
 		}
-	}
+	};
 	prepareTwitterParams = () => {
  		// Encode query before passing it to Twitter (unsure if the 'twitter' module already does this)
 		let q = encodeURIComponent(config.track);
@@ -138,7 +156,7 @@ class App extends React.Component {
 		}
 
 		return params;
-	}
+	};
 }
 
 // Currently just a dummy Gallery component

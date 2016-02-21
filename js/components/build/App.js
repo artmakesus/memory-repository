@@ -1,8 +1,6 @@
 'use strict';
 
-// Configuration
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -20,6 +18,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var inappropriateWords = ['RT', 'fuck', 'shit'];
+
+// Configuration
 var config = undefined;
 try {
 	config = JSON.parse(remote.require('fs').readFileSync('config.json'));
@@ -39,7 +40,7 @@ var twitterClient = undefined;
 
 // React
 
-var App = (function (_React$Component) {
+var App = function (_React$Component) {
 	_inherits(App, _React$Component);
 
 	function App() {
@@ -56,6 +57,16 @@ var App = (function (_React$Component) {
 		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(App)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.maxID = -1, _this.state = {
 			tweets: [],
 			isStreaming: false
+		}, _this.wordFilter = function (phrase) {
+			var i = 0;
+			while (i < inappropriateWords.length - 1) {
+				if (phrase.indexOf(inappropriateWords[i]) > -1) {
+					return false;
+				} else {
+					i++;
+				}
+			}
+			return true;
 		}, _this.searchTweets = function () {
 			// Should never be called if we are already streaming tweets
 			if (_this.state.isStreaming) {
@@ -90,7 +101,11 @@ var App = (function (_React$Component) {
 
 					var currentTweets = _this.state.tweets;
 					for (var i in tweetsFound) {
-						currentTweets.push(tweetsFound[i]);
+						if (_this.wordFilter(tweetsFound[i].text)) {
+							currentTweets.push(tweetsFound[i]);
+						} else {
+							console.log(tweetsFound[i].text);
+						}
 					}
 					_this.setState({ tweets: currentTweets });
 				}
@@ -106,6 +121,7 @@ var App = (function (_React$Component) {
 
 			console.log('Searching tweets..');
 		}, _this.streamTweets = function () {
+			console.log('hello stream');
 			// Prevent multiple streams
 			if (!_this.state.isStreaming) {
 
@@ -173,11 +189,12 @@ var App = (function (_React$Component) {
 	}]);
 
 	return App;
-})(_react2.default.Component);
+}(_react2.default.Component);
 
 // Currently just a dummy Gallery component
 
-var Gallery = (function (_React$Component2) {
+
+var Gallery = function (_React$Component2) {
 	_inherits(Gallery, _React$Component2);
 
 	function Gallery() {
@@ -239,6 +256,6 @@ var Gallery = (function (_React$Component2) {
 	}]);
 
 	return Gallery;
-})(_react2.default.Component);
+}(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
