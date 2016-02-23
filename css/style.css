@@ -3,6 +3,7 @@ body{
 	background-color:black;
 	overflow:hidden;
 	cursor:none;
+	font-size:150%;
 }
 .tweet_block{
 	padding-bottom:20px;
@@ -10,7 +11,7 @@ body{
 @keyframes marquee{
 	0% {top:500px;}
 	75% {opacity:1;}
-	100% {top:-2000px;opacity:0.2;}
+	100% {top:-2000px;opacity:0.1;}
 }
 
 .marquee{
@@ -19,6 +20,6 @@ body{
 	position:relative;
 	animation-timing-function:linear;
 	animation-name:marquee;
-	animation-duration: 15s;
+	animation-duration: 45s;
 	animation-iteration-count: infinite;
 }
