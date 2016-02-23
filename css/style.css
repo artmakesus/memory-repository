@@ -1,9 +1,20 @@
 body{
 	color:white;
 	background-color:black;
+	overflow:hidden;
 }
 .tweet_block{
 	padding-bottom:20px;
 }
+@keyframes marquee{
+0% {top:800px;}
+100% {top:-1000px;}
+}
+
 .marquee{
+	position:relative;
+	animation-timing-function:linear;
+	animation-name:marquee;
+	animation-duration: 15s;
+	animation-iteration-count: infinite;
 }
