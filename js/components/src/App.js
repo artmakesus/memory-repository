@@ -123,6 +123,7 @@ class App extends React.Component {
 				stream.on('data', (tweet) => {
 					let tweets = this.state.tweets;
 					tweets.unshift(tweet);
+					tweets.pop();
 					this.setState({ tweets: tweets });
 				});
 

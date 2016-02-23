@@ -131,6 +131,7 @@ var App = function (_React$Component) {
 					stream.on('data', function (tweet) {
 						var tweets = _this.state.tweets;
 						tweets.unshift(tweet);
+						tweets.pop();
 						_this.setState({ tweets: tweets });
 					});
 
