@@ -9,7 +9,7 @@ body{
 }
 @keyframes marquee{
 0% {top:500px;}
-75% {overflow:1};
+75% {overflow:1;};
 100% {top:-2000px;overflow:0.2;}
 }
 
