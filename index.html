@@ -4,10 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Memory Repository</title>
 	<link rel='stylesheet' href='css/style.css' />
+	<script src='js/marquee.js'></script>
 </head>
 <body>
-	<div id='root'></div>
+<!--	<marquee direction=up scrolldelay=200> -->
+	<div id = 'marque' >
+		<div id='root'></div>
+	</div>
 	<script>const remote = require('electron').remote;</script>
 	<script src='js/bundle.js'></script>
+	<script>
+		new Marquee('marquee', {
+			speed: 1
+		});
+	</script>
 </body>
 </html>

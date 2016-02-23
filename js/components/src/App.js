@@ -170,13 +170,11 @@ class Gallery extends React.Component {
 						let media = tweet.entities.media;
 						let mediaURL = media ? media[0].media_url : null;
 						return (
-							<div key={ tweet.id }>
-								{ mediaURL ? <img src={ mediaURL } /> : null }
-								<div>
+							<div key={ tweet.id } >
+								<div className = "tweet_block">
 									<p><em>"{ tweet.text }"</em></p>
-									<p><strong> { tweet.user.name }</strong></p>
+									<p><strong> - { tweet.user.name }</strong></p>
 								</div>
-								<hr />
 							</div>
 						)
 					})

@@ -222,10 +222,9 @@ var Gallery = function (_React$Component2) {
 					return _react2.default.createElement(
 						'div',
 						{ key: tweet.id },
-						mediaURL ? _react2.default.createElement('img', { src: mediaURL }) : null,
 						_react2.default.createElement(
 							'div',
-							null,
+							{ className: 'tweet_block' },
 							_react2.default.createElement(
 								'p',
 								null,
@@ -243,12 +242,11 @@ var Gallery = function (_React$Component2) {
 								_react2.default.createElement(
 									'strong',
 									null,
-									' ',
+									' - ',
 									tweet.user.name
 								)
 							)
-						),
-						_react2.default.createElement('hr', null)
+						)
 					);
 				})
 			);
